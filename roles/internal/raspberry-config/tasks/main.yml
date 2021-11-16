@@ -1,0 +1,13 @@
+---
+- name: Get current SPI status
+  shell: "raspi-config nonint get_spi"
+  register: spi_status
+  changed_when: False
+
+- name: Enable SPI
+  shell: "raspi-config nonint do_spi 0"
+  when: spi_status.stdout != '0'
+
+- name: Reboot the raspberry for SPI to become effective
+  reboot: 
+  when: spi_status.stdout != '0'

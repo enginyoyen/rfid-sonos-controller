@@ -1,0 +1,16 @@
+---
+supervisor_programs:
+  - name: 'rfid-player'
+    command: /usr/bin/python3 /home/pi/app/main.py
+    state: present
+    configuration: |
+      autostart=true
+      autorestart=true
+      startretries=1
+      startsecs=1
+      redirect_stderr=true
+      stderr_logfile=/var/log/rfid-player-out.log
+      stdout_logfile=/var/log/rfid-player-err.log
+      user=root
+      killasgroup=true
+      stopasgroup=true
