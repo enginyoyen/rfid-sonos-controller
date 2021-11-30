@@ -1,12 +1,10 @@
 ---
+
 - name: Copy app
   copy: 
    src: "{{ role_path }}/files/" 
    dest: "/home/pi"
    directory_mode: yes
-   owner: pi
-   group: pi
-   mode: 0755
 
 - name: allow permission explicitly - the code above seems to not manage it
   ansible.builtin.file:
@@ -14,3 +12,4 @@
     owner: pi
     group: pi
     mode: 0755
+
